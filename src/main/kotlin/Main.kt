@@ -10,9 +10,10 @@ fun main() {
 
     val names = input.nextLine()?.split(',')?.map { it.trim() } ?: emptyList()
     val wins = names.map { namePlayer ->
-        namePlayer.capitalize().isValidPlayer(Pair(player1, player2)) { player ->
+        val player = namePlayer.capitalize().isValidPlayer(Pair(player1, player2)) { player ->
             player
         }
+        player
     }.toTypedArray()
 
     val outStream = System.out
@@ -20,11 +21,11 @@ fun main() {
     val gameState = try {
         tennis.computeGameState(player1, player2, wins)
     } catch (e: IllegalArgumentException) {
-        println("Unknown player in the table scores.")
+        println(e.message)
     }
     System.setOut(outStream)
 
-    println(gameState)
+    println("Final result= $gameState")
 }
 
 fun String.capitalize(): String {

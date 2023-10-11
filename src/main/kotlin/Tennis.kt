@@ -8,7 +8,7 @@ class Tennis {
     }
 
     fun computeGameState(player1: Player, player2: Player, wins: Array<Player?>): String {
-        if (wins.contains(null)) throw IllegalArgumentException()
+        if (wins.contains(null)) throw IllegalArgumentException("Unknown player in the table scores.")
 
         var gameState: GameState = GameState.NOTHING
         var displayState = ""
@@ -42,7 +42,7 @@ class Tennis {
                     displayState(GameState.NOTHING, "${player1.points}a")
                 }
             }
-            player1.points > player2.points && player1.wonRounds >= ADVANTAGE_SCORED && player2.wonRounds >= ADVANTAGE_SCORED && gameState != GameState.ADVANTAGE -> {
+            player1.wonRounds >= ADVANTAGE_SCORED && player2.wonRounds >= ADVANTAGE_SCORED && gameState != GameState.ADVANTAGE -> {
                 if ((player1.wonRounds - player2.wonRounds) == 1) {
                     displayState(GameState.ADVANTAGE, "$player1 ${GameState.ADVANTAGE}")
                 } else if ((player2.wonRounds - player1.wonRounds) == 1) {
