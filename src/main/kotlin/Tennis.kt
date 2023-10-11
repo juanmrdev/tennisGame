@@ -1,3 +1,5 @@
+import java.lang.IllegalArgumentException
+
 class Tennis {
 
     companion object {
@@ -6,7 +8,7 @@ class Tennis {
     }
 
     fun computeGameState(player1: Player, player2: Player, wins: Array<Player?>): String {
-        if (wins.contains(null)) GameState.NOTHING
+        if (wins.contains(null)) throw IllegalArgumentException()
 
         var gameState: GameState = GameState.NOTHING
         var displayState = ""

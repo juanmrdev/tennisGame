@@ -1,6 +1,7 @@
+import java.lang.IllegalArgumentException
 import java.util.*
 
-fun main(args: Array<String>) {
+fun main() {
     val input = Scanner(System.`in`)
 
     val player1 = Player(input.nextLine().capitalize())
@@ -16,7 +17,11 @@ fun main(args: Array<String>) {
 
     val outStream = System.out
     System.setOut(System.err)
-    val gameState = tennis.computeGameState(player1, player2, wins)
+    val gameState = try {
+        tennis.computeGameState(player1, player2, wins)
+    } catch (e: IllegalArgumentException) {
+        println("Unknown player in the table scores.")
+    }
     System.setOut(outStream)
 
     println(gameState)
