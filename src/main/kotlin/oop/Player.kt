@@ -1,3 +1,5 @@
+package oop
+
 data class Player(
     val name: String,
     var points: Int = 0,
